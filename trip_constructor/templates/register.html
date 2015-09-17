@@ -1,0 +1,18 @@
+{% extends 'main.html' %} <!-- inheritance -->
+{% block 'content' %} <!-- this overrides block 'content' from the template 'main.html' -->
+  <form method="post" action="{{ request.path }}" class="login-form"> <!-- request.path
+                                      is a standart django template tag,
+                                      which containts the url of current page -->
+    {% csrf_token %} <!-- this token is generated automatically by django for security reasons -->
+    <label for="username">Username: </label>
+    <input type="text" name="username">
+    <br>
+    <label for="password">Password: </label>
+    <input type="password" name="password">
+    <br>
+    <label for="confirm_password">Confirm password: </label>
+    <input type="password" name="confirm_password">
+    <br>
+    <input type="submit" value="Register">
+  </form>
+{% endblock %}

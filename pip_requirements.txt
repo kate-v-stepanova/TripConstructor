@@ -1,0 +1,6 @@
+django
+beautifulsoup4
+html5lib
+django-countries
+South
+Pillow

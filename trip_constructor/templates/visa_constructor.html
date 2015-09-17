@@ -1,0 +1,84 @@
+{% extends 'main.html' %} <!-- inheritance -->
+{% block 'content' %} <!-- this overrides block 'content' from the template 'main.html' -->
+
+{% include "navigation.html" %}
+        <br><br><br>
+  <form method="post" action="{{ request.path }}" class="visa-constructor"> <!-- request.path
+                                      is a standart django template tag,
+                                      which containts the url of current page -->
+    {% csrf_token %} <!-- this token is generated automatically by django for security reasons -->
+    <label for="your_country">Select your country:</label>
+    <select name="your_country" class="country-select">
+      {% for code, name in list_of_countries.items %} <!-- list_of_countries is dictionary, passed from view -->
+      <option value="{{code}}"
+        {% if your_country = code %} {% comment %} <!-- your_country is selected option, passed from view --> {% endcomment %}
+          selected='selected'
+        {% endif %}>{{ name }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <label for="your_country">Country of your partner:</label>
+    <select name="partner_country" class="country-select">
+      {% for code, name in list_of_countries.items %} <!-- list_of_countries is dictionary, passed from view -->
+      <option value="{{code}}"
+        {% if code = partner_country %} {% comment %} <!-- partner_country is selected option, passed from view -->{% endcomment %}
+          selected='selected'
+        {% endif %}>{{ name }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Retrieve Data" name="retrieve_data">
+    {% if requirements %}
+      <table id="visa-table">
+        <div id="visa_container">
+        <thead>
+          <br>
+          <input type="submit" value="Save selected countries" name="add_countries">
+              <tr>
+                  <th></th>
+                  <th>Country</th>
+                  <th>For residents of {{ your_country }}</th>
+                  <th>For residents of {{ partner_country }}</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for row in requirements %}
+              <tr name="{{ row.country }}">
+                  <td><input type="checkbox" value="{{ row.country }}" class="add-country" name="countries"></td>
+                  <td><img src="{{ row.flag }}"/> {{ row.country }}</td>
+                  <td
+                      {% if 'not required' in row.your_requirements %}
+                        class='green'
+                      {% elif 'Visa required' in row.your_requirements %}
+                        class='red'
+                      {% endif %}
+                  >{{ row.your_requirements }}</td>
+                  <td
+                      {% if 'not required' in row.partner_requirements %}
+                        class='green'
+                      {% elif 'Visa required' in row.partner_requirements %}
+                        class='red'
+                      {% endif %}
+                  >{{ row.partner_requirements }}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            console.log(String("{{ request.path }}"));
+            $('#visa-table').dataTable({
+                "bPaginate": false,
+                "order": [[1, "asc"]],
+            });
+
+
+            $('#visa-table-group').change(function() {
+                // TODO: add grouping
+            });
+        });
+    </script>
+    {% endif %}
+  </form>
+{% endblock %}

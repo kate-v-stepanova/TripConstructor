@@ -1,0 +1,16 @@
+To run the project, you need to do the following steps:
+1) Unpack the archive file
+2) Open the terminal and navigate to the project folder with the command "cd"
+3) Create a directory (for example with the name ".env")
+4) Create the virtual environment with the command "virtualenv"
+5) Activate virtual environment with "source .env/bin/activate"
+6) Install required packages with "pip install -r pip_requirements.txt"
+7) To clear the database if exists, run "python manage.py flush"
+8) Sychronise Database with command "python manage.py syncdb"
+9) Start the server with commend "python manage.py runserver"
+10) Access the project with any browser on "http://127.0.0.1:8000/"
+
+Step 6 often fails, because the package "Pillow" requires preinstalled library 'python-dev'.
+To install: "sudo apt-get install python-dev".
+
+

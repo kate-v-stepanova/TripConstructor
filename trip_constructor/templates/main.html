@@ -1,0 +1,44 @@
+{% comment %}
+    <!--this html file is base for all django templates which are inherited from main-->
+{% endcomment %}
+
+{% load staticfiles %}
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Trip Constructor</title>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style.css">
+        <script type="text/javascript" charset="utf8" src="{{ STATIC_URL }}jquery.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="{{ STATIC_URL }}jquery.dataTables.js"></script>
+
+    </head>
+    <body>
+      <div class="page-container">
+        {% if notification %}
+          <div class="notification">
+            <span>{{ notification }}</span><br><br>
+            <span class="notif-button">Close</span>
+          </div>
+        {% endif %}
+        <div>
+
+        {% include 'navigation.html' %}
+          {% block 'content' %}
+            {% comment %}
+              <!--here will be inserted the content of html file, inherited from current file (main.html)-->
+            {% endcomment %}
+          {% endblock %}
+
+        </div>
+      </div>
+
+    <script>
+    $(document).ready(function() {
+        $(".notif-button").click(function(){
+            $(".notification").hide();
+        });
+    });
+    </script>
+    </body>
+</html>

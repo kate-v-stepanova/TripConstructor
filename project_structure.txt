@@ -1,0 +1,26 @@
+Django project has a specific structure, which includes few main elements. In the project directory we can see the following:
+	.env - is a directory with virtual environment. Contains all necessary packages and libraries to run the project.
+	db.sqlite3 - is a database file
+	manage.py - is a command-line utility that contains the commands to interact with Django.
+	pip_requirements - is a file with the list of packages that required to be installed in virtualenvironment.
+	visa8 - is a directory that contains application itself.
+
+Inside of directory visa8 we can see the following:
+	media - is a directory which contains media files. The path to this directory should be specified in settings.py file as MEDIA_ROOT
+	static - is a directory which contains static files. The path to this directory should be specified in settings.py file as STATIC_ROOT.
+		this directory contains static files, for example javascript libraries jquery.dataTables.js and jquery.min.js and style files that should be included in the head of main template.
+		style.css - is a custom style, created manualy for the project.
+		directory admin is generated automatically and includes default files used in admin interface.
+	templates - is a directory that contains django templates. The path to this directory has to be specified in settings.py file as TEMPLATE_DIR.
+		contains the following templates:
+			main.html - is the main template, which contains the structure of html document, and where the content of each page will be inserted.
+			login.html, register.html, profile.html, visa_constructor.html - are the templates refered to their view methods (defined in views.py, and mapped to urls in urls.py)
+			navigation.html - is and html file which contains navigation panel. it is included in the template main.html.
+	__init__.py - is an empty automatically generated file that specifies the direcory to be considered as a Python package.
+	admin.py - is an empty automatically generated file where developer can specify which of the models and how will be represented in admin interface.
+	forms.py - is file where form classes are defined. Form is a class that represents a model object, and used to generate html form from the object in view.
+	models.py - is a file where models are defined.
+	settings.py - is a file where project configuration is specified.
+	urls.py - is a file which contains the url declarations for the project. Url is bound to its view method
+	views.py - is a file which contains view functions (or shorty views). Each view is a method that processes get or post requests and returns response, which can be html representation of the web page.
+	wsgi.py - is an automatically generated file that specifies an antry-point for WSGI-compatible web servers to serve the project.

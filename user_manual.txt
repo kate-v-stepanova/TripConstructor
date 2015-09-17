@@ -1,0 +1,19 @@
+Web-application Trip Constructor is created to help user to choose countries where he can go, according to his nationality and visa requirements. Visa requirements are retrieved from the web and saved in the local database. User can choose his and his trip partner's nationality and get a table which contains the list of the possible destinations with the short description of the visa requirements for him and his partner.
+Description of user functions:
+
+1. open in browser ip address: 127.0.0.1:8000
+2. You will be redirected to the login page
+3. In login dialog choose the option "Register"
+4. Enter your username and password. 
+5. After pressing 'register' you account data will be saved in the database and you will be redirected again to the login page
+6. Enter username and password
+
+7. If login data is correct, you will be redirected to Trip Constructo page, otherwise error message will be displayed.
+8. Select a country of your and your travel partner's residenship from the list and press 'Retrieve Data' or Enter.
+9. The data about visa requirements will be retrieved from wikipedia and saved in the database.
+10. The data is represented in the datatable, which has 3 columns - Country (is the possible destination of your trip), and 2 columns with requirements for residents of your country (second column) and residents of your partner's country (third column).
+11. Background of dataTable column depends on the requirements. For the countries, where visa is not required background color is green. For the contries with required visa background colos is red. For any other type of requirements it's white.
+12. Table can be sorted by Countries, and by visa requirements for user or his partner in both ascening and descending order by clicking on the title of the related column.
+13. Each record of the dataTable has a checkbox, which can be selected. After pressing button 'Save selected countries' the selected countries will be added in the user profile to the list of trips. 
+13. Datatable has a field "Search". User can enter a string, containing name or a part of name of a country, and matching records will be displayed.
+

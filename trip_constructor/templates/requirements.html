@@ -1,0 +1,34 @@
+<!--{% extends 'main.html' %}-->
+    <!--{% block 'content' %} &lt;!&ndash; this overrides block 'content' from the template 'main.html' &ndash;&gt;-->
+        <!--<div id="visa_container">-->
+            <!--<table id="visa-table">-->
+                <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th></th>-->
+                        <!--<th>Country</th>-->
+                        <!--<th>For russians</th>-->
+                        <!--<th>For germans</th>-->
+                    <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                    <!--{% for row in requirements %}-->
+                    <!--<tr>-->
+                        <!--<td><img src="{{ row.flag }}"/></td>-->
+                        <!--<td>{{row.country}}</td>-->
+                        <!--<td>{{row.for_russians}}</td>-->
+                        <!--<td>{{row.for_germans}}</td>-->
+                    <!--</tr>-->
+                    <!--{% endfor %}-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+
+        <!--<script type="text/javascript" charset="utf-8">-->
+            <!--$(document).ready(function() {-->
+                <!--$('#visa-table').dataTable({-->
+                    <!--"bPaginate": false,-->
+                    <!--"order": [[1, "asc"]],-->
+                <!--});-->
+            <!--});-->
+        <!--</script>-->
+    <!--{% endblock %}-->

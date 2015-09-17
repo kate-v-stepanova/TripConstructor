@@ -1,0 +1,50 @@
+The configuration is stored in file settings.py. It contains a set of variables which are needed for internal django and user-defined modules.
+
+The following variables are mandatory, they are initialized by django, but could be also changed by developer:
+BASE_DIR is absolute path to root directory of the project.
+CURRENT_DIR defines a path to directory inside of the project.
+
+SECRET_KEY is a randomly-generated variable, which is unique for particular django project.  It is used to provide cryptographic signing.
+
+DEBUG is a boolean variable. If the value is True, then in case if the application throws an exception, detailed traceback will be printed.
+
+TEMPLATE_DEBUG is a boolean variable, if the value is True, django generates report for any exception raised during template rendering.
+
+ALLOWED_HOSTS is a list of strings, representing the host/domain names that the project can be accessed by.
+
+INSTALLED_APPS is a list of strings, representing all modules/applications that are enabled for the project. Each string contains relative or absolute path.
+
+MIDDLEWARE_CLASSES is a list of strings, representing internal django middleware classes that are used for the project.
+
+ROOT_URLCONF is a string representing the path to the config file with mapping urls to views of the project. 
+
+WSGI_APPLICATION is a string representing the path to the WSGI application object that Django will use to manage the server (for example commands runserver, startapp, syncdb)
+
+DATABASES is a dictionary containing the settings for default database that is used in the project. Dictionary must contain at lease 2 values:
+	'ENGINE' is a string representing the path to python module for database. In our case it's 'django.db.backends.sqlite3'
+	'NAME' is a string representing the name of the file with database. In our case it's 'db.sqlite3'
+
+LANGUAGE_CODE is a string representing the default language code for the project.
+
+TIME_ZONE is a string representing the default time zone.
+
+USE_I18N is a boolean variable, that specifies if multi-language support is enabled.
+
+USE_L10N is a boolean variable that specifies if numbers, dates, days of week and other formatting data will be displayed according to the current locale.
+
+USE_TZ is a boolean variable that specifies if dates and times will be used according to current time zone.
+
+The following variables are optional, they are defined manually:
+
+STATIC_URL is a string representing the url path to refer to static files of the project (for example, javascript libraries).
+
+STATIC_ROOT is a string representing the relative path inside of the project to store static files.
+
+TEMPLATE_DIR is a sting representing the relative path inside of the project where html templates are located.
+
+MEDIA_ROOT is a string representing the relative path inside of the project to store dynamical media files (for example, user profile picture)
+
+MEDIA_URL is a string representing the url path to refer to media files of the project (the files, which are stored in MEDIA_ROOT)
+
+LIST OF COUNTRIES is a dictionary representing the mapping between country and url to wikipedia page to parse data from.
+

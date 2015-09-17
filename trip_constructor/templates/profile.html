@@ -1,0 +1,81 @@
+{% extends "main.html" %}
+{% block 'content' %}
+        <br><br><br>
+  <form class="profile-form" method="post" action="{{ request.path }}" enctype="multipart/form-data">
+   {% csrf_token %}
+    <ul>
+    {% if picture %}
+      <img src="{{ picture.url }}" class="profile-picture">
+    {% endif %}
+    {% for field in form.visible_fields %}
+    {% if field.label = 'Picture' %}
+      <li>
+        <label>
+          Select:
+        </label>
+        <input type="file" id="id_picture" name="picture"><br>
+        <label for="picture-clear_id">Delete:</label>
+        <input type="checkbox" id="picture-clear_id" name="picture-clear"><br>
+      </li><br>
+    {% else %}
+        <li>
+        <label for="{{ field.id_for_label }}">
+          {{ field.label }}:
+        </label>
+            {{ field }}
+        </li>
+     {% endif %}
+    {% endfor %}
+        <li>
+          <label for="id_password">Password: </label>
+          <input id="id_password" type="password">
+        </li>
+      <li>
+        <input type="submit" name="save-profile" value="Save profile">
+      </li>
+    </ul>
+   </form>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <form method="post" action="{{ request.path }}" class="trip-form">
+      {% csrf_token %}
+  {% if trips %}
+    <table id="trips-table">
+      <thead>
+        <br>
+        <input type="submit" value="Delete selected countries" name="delete_countries" class="delete-country">
+        <tr>
+            <th></th>
+            <th>Destination</th>
+            <th>Your nationality</th>
+            <th>Visa requirements</th>
+            <th>Partner's nationality</th>
+            <th>Visa requirements</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for trip in trips %}
+        <tr>
+          <td>
+          </td>
+          <td><input type="checkbox" value="{{ trip.id }}"
+                     name="countries"><img src="{{ trip.your_requirements.flag }}"><label>{{ trip.your_requirements.destination }}</label></td>
+          <td>{{ trip.your_requirements.nationality }}</td>
+          <td>{{ trip.your_requirements.notes }}</td>
+          <td>{{ trip.partner_requirements.nationality }}</td>
+          <td>{{ trip.partner_requirements.notes }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+  </form>
+
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+          $('#trips-table').dataTable({
+              "bPaginate": false,
+              "order": [[1, "asc"]],
+          });
+      });
+</script>
+{% endblock %}
